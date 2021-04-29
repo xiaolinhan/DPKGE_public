@@ -1,0 +1,951 @@
+@prefix : <https://example.com/mimic/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix obda: <https://w3id.org/obda/vocabulary#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://example.com/mimic/> .
+
+<https://example.com/mimic/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://example.com/mimic/admissionType
+:admissionType rdf:type owl:ObjectProperty ;
+               rdfs:domain :Admission ;
+               rdfs:range :AdmissionType .
+
+
+###  https://example.com/mimic/hasABItemID
+:hasABItemID rdf:type owl:ObjectProperty ;
+             rdfs:domain :MicrobiologyEvent ;
+             rdfs:range :ABItemID .
+
+
+###  https://example.com/mimic/hasAcknowledgeStatus
+:hasAcknowledgeStatus rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Callout ;
+                      rdfs:range :AcknowledgeStatus .
+
+
+###  https://example.com/mimic/hasAdmission
+:hasAdmission rdf:type owl:ObjectProperty ;
+              rdfs:domain :Subject ;
+              rdfs:range :Admission .
+
+
+###  https://example.com/mimic/hasAdmissionLocation
+:hasAdmissionLocation rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Admission ;
+                      rdfs:range :Location .
+
+
+###  https://example.com/mimic/hasCPTEvent
+:hasCPTEvent rdf:type owl:ObjectProperty ;
+             rdfs:domain :Admission ;
+             rdfs:range :CPTEvent .
+
+
+###  https://example.com/mimic/hasCurrentCareUnit
+:hasCurrentCareUnit rdf:type owl:ObjectProperty ;
+                           rdfs:domain :Callout ;
+                           rdfs:range :CareUnit .
+
+
+###  https://example.com/mimic/hasCurrentWardID
+:hasCurrentWardID rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Callout ;
+                         rdfs:range :WardID .
+
+
+###  https://example.com/mimic/hasCalloutEvent
+:hasCalloutEvent rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Admission ;
+                 rdfs:range :Callout .
+
+
+###  https://example.com/mimic/hasCalloutOutcome
+:hasCalloutOutcome rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Callout ;
+                   rdfs:range :CalloutOutcome .
+
+
+###  https://example.com/mimic/hasCalloutService
+:hasCalloutService rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Callout ;
+                   rdfs:range :CareUnit .
+
+
+###  https://example.com/mimic/hasCalloutStatus
+:hasCalloutStatus rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Callout ;
+                  rdfs:range :CalloutStatus .
+
+
+###  https://example.com/mimic/hasSubmitCareUnit
+:hasSubmitCareUnit rdf:type owl:ObjectProperty ;
+                          rdfs:domain :Callout ;
+                          rdfs:range :CareUnit .
+
+
+###  https://example.com/mimic/hasSubmitWardID
+:hasSubmitWardID rdf:type owl:ObjectProperty ;
+                        rdfs:domain :Callout ;
+                        rdfs:range :WardID .
+
+
+###  https://example.com/mimic/hasCalloutToWardID
+:hasCalloutToWardID rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Callout ;
+                    rdfs:range :WardID .
+
+
+###  https://example.com/mimic/hasCancelReason
+:hasCancelReason rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Event ;
+                 rdfs:range :CancelReason .
+
+
+###  https://example.com/mimic/hasCaregiver
+:hasCaregiver rdf:type owl:ObjectProperty ;
+              rdfs:domain :Event ;
+              rdfs:range :Caregiver .
+
+
+###  https://example.com/mimic/hasChartEvent
+:hasChartEvent rdf:type owl:ObjectProperty ;
+               rdfs:domain :Admission ;
+               rdfs:range :ChartEvent .
+
+
+###  https://example.com/mimic/hasErrorStatus
+:hasErrorStatus rdf:type owl:ObjectProperty ;
+                rdfs:domain :Event ;
+                rdfs:range :ErrorStatus .
+
+
+###  https://example.com/mimic/hasResultStatus
+:hasResultStatus rdf:type owl:ObjectProperty ;
+                           rdfs:domain :ChartEvent ;
+                           rdfs:range :ResultStatus .
+
+
+###  https://example.com/mimic/hasStoppedStatus
+:hasStoppedStatus rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Event ;
+                  rdfs:range :StoppedStatus .
+
+
+###  https://example.com/mimic/hasWarningStatus
+:hasWarningStatus rdf:type owl:ObjectProperty ;
+                            rdfs:domain :ChartEvent ;
+                            rdfs:range :WarningStatus .
+
+
+###  https://example.com/mimic/hasContinueInNextDeptStatus
+:hasContinueInNextDeptStatus rdf:type owl:ObjectProperty ;
+                             rdfs:domain :Event ;
+                             rdfs:range :ContinueInNextDeptStatus .
+
+
+###  https://example.com/mimic/hasCostCenter
+:hasCostCenter rdf:type owl:ObjectProperty ;
+               rdfs:domain :CPTEvent ;
+               rdfs:range :CostCenter .
+
+
+###  https://example.com/mimic/hasCurrServiceType
+:hasCurrServiceType rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Service ;
+                    rdfs:range :ServiceType .
+
+
+###  https://example.com/mimic/hasDRG
+:hasDRG rdf:type owl:ObjectProperty ;
+        rdfs:domain :Admission ;
+        rdfs:range :DRG .
+
+
+###  https://example.com/mimic/hasDRGCode
+:hasDRGCode rdf:type owl:ObjectProperty ;
+            rdfs:domain :DRG ;
+            rdfs:range :DRGCode .
+
+
+###  https://example.com/mimic/hasDRGMortality
+:hasDRGMortality rdf:type owl:ObjectProperty ;
+                 rdfs:domain :DRG ;
+                 rdfs:range :DRGMortality .
+
+
+###  https://example.com/mimic/hasDRGSeverity
+:hasDRGSeverity rdf:type owl:ObjectProperty ;
+                rdfs:domain :DRG ;
+                rdfs:range :DRGSeverity .
+
+
+###  https://example.com/mimic/hasDRGType
+:hasDRGType rdf:type owl:ObjectProperty ;
+            rdfs:domain :DRG ;
+            rdfs:range :DRGType .
+
+
+###  https://example.com/mimic/hasDischargeLocation
+:hasDischargeLocation rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Admission ;
+                      rdfs:range :Location .
+
+
+###  https://example.com/mimic/hasDischargeWardID
+:hasDischargeWardID rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Callout ;
+                    rdfs:range :WardID .
+
+
+###  https://example.com/mimic/hasDrug
+:hasDrug rdf:type owl:ObjectProperty ;
+         rdfs:domain :Prescription ;
+         rdfs:range :Drug .
+
+
+###  https://example.com/mimic/hasDrugRoute
+:hasDrugRoute rdf:type owl:ObjectProperty ;
+              rdfs:domain :Prescription ;
+              rdfs:range :DrugRoute .
+
+
+###  https://example.com/mimic/hasDrugType
+:hasDrugType rdf:type owl:ObjectProperty ;
+             rdfs:domain :Prescription ;
+             rdfs:range :DrugType .
+
+
+###  https://example.com/mimic/hasEthnicity
+:hasEthnicity rdf:type owl:ObjectProperty ;
+              rdfs:domain :Admission ;
+              rdfs:range :Ethnicity .
+
+
+###  https://example.com/mimic/hasExpireFlag
+:hasExpireFlag rdf:type owl:ObjectProperty ;
+               rdfs:domain :Subject ;
+               rdfs:range :ExpireFlag .
+
+
+###  https://example.com/mimic/hasFirstCareUnit
+:hasFirstCareUnit rdf:type owl:ObjectProperty ;
+                  rdfs:domain :ICUStay ;
+                  rdfs:range :CareUnit .
+
+
+###  https://example.com/mimic/hasFirstWardID
+:hasFirstWardID rdf:type owl:ObjectProperty ;
+                rdfs:domain :ICUStay ;
+                rdfs:range :WardID .
+
+
+###  https://example.com/mimic/hasFlag
+:hasFlag rdf:type owl:ObjectProperty ;
+         rdfs:domain :LabEvent ;
+         rdfs:range :Flag .
+
+
+###  https://example.com/mimic/hasGender
+:hasGender rdf:type owl:ObjectProperty ;
+           rdfs:domain :Subject ;
+           rdfs:range :Gender .
+
+
+###  https://example.com/mimic/hasICDCode
+:hasICDCode rdf:type owl:ObjectProperty ;
+            rdfs:domain :ICDItem ;
+            rdfs:range :ICDCode .
+
+
+###  https://example.com/mimic/hasICDDiagnosis
+:hasICDDiagnosis rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Admission ;
+                 rdfs:range :ICDDiagnosis .
+
+
+###  https://example.com/mimic/hasICDProcedure
+:hasICDProcedure rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Admission ;
+                 rdfs:range :ICDProcedure .
+
+
+###  https://example.com/mimic/hasICUStay
+:hasICUStay rdf:type owl:ObjectProperty ;
+            rdfs:domain :Admission ;
+            rdfs:range :ICUStay .
+
+
+###  https://example.com/mimic/hasInputEvent
+:hasInputEvent rdf:type owl:ObjectProperty ;
+               rdfs:domain :ICUStay ;
+               rdfs:range :InputEvent .
+
+
+###  https://example.com/mimic/hasNewBottleStatus
+:hasNewBottleStatus rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Event ;
+                    rdfs:range :NewBottleStatus .
+
+
+###  https://example.com/mimic/hasInsurance
+:hasInsurance rdf:type owl:ObjectProperty ;
+              rdfs:domain :Admission ;
+              rdfs:range :Insurance .
+
+
+###  https://example.com/mimic/hasInterpretation
+:hasInterpretation rdf:type owl:ObjectProperty ;
+                   rdfs:domain :MicrobiologyEvent ;
+                   rdfs:range :Interpretation .
+
+
+###  https://example.com/mimic/hasIsolateNum
+:hasIsolateNum rdf:type owl:ObjectProperty ;
+               rdfs:domain :MicrobiologyEvent ;
+               rdfs:range :IsolateNum .
+
+
+###  https://example.com/mimic/hasLabEvent
+:hasLabEvent rdf:type owl:ObjectProperty ;
+             rdfs:domain :Admission ;
+             rdfs:range :LabEvent .
+
+
+###  https://example.com/mimic/hasLanguage
+:hasLanguage rdf:type owl:ObjectProperty ;
+             rdfs:domain :Admission ;
+             rdfs:range :Language .
+
+
+###  https://example.com/mimic/hasLastCareUnit
+:hasLastCareUnit rdf:type owl:ObjectProperty ;
+                 rdfs:domain :ICUStay ;
+                 rdfs:range :CareUnit .
+
+
+###  https://example.com/mimic/hasLastWardID
+:hasLastWardID rdf:type owl:ObjectProperty ;
+               rdfs:domain :ICUStay ;
+               rdfs:range :WardID .
+
+
+###  https://example.com/mimic/hasMaritalStatus
+:hasMaritalStatus rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Admission ;
+                  rdfs:range :MaritalStatus .
+
+
+###  https://example.com/mimic/hasMeasurementType
+:hasMeasurementType rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Event ;
+                    rdfs:range :MeasurementType .
+
+
+###  https://example.com/mimic/hasMicrobiologyEvent
+:hasMicrobiologyEvent rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Admission ;
+                      rdfs:range :MicrobiologyEvent .
+
+
+###  https://example.com/mimic/hasNoteCategory
+:hasNoteCategory rdf:type owl:ObjectProperty ;
+                 rdfs:domain :NoteEvent ;
+                 rdfs:range :NoteCategory .
+
+
+###  https://example.com/mimic/hasNoteDescription
+:hasNoteDescription rdf:type owl:ObjectProperty ;
+                    rdfs:domain :NoteEvent ;
+                    rdfs:range :NoteDescription .
+
+
+###  https://example.com/mimic/hasNoteEvent
+:hasNoteEvent rdf:type owl:ObjectProperty ;
+              rdfs:domain :Admission ;
+              rdfs:range :NoteEvent .
+
+
+###  https://example.com/mimic/hasOpenBagStatus
+:hasOpenBagStatus rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Event ;
+                  rdfs:range :OpenBagStatus .
+
+
+###  https://example.com/mimic/hasOrderCategoryDescription
+:hasOrderCategoryDescription rdf:type owl:ObjectProperty ;
+                             rdfs:domain :Event ;
+                             rdfs:range :OrderCategoryDescription .
+
+
+###  https://example.com/mimic/hasOrderCategoryName
+:hasOrderCategoryName rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Event ;
+                      rdfs:range :OrderCategoryName .
+
+
+###  https://example.com/mimic/hasOrderComponentTypeDescription
+:hasOrderComponentTypeDescription rdf:type owl:ObjectProperty ;
+                                  rdfs:domain :InputEvent ;
+                                  rdfs:range :OrderComponentTypeDescription .
+
+
+###  https://example.com/mimic/hasOrgItemID
+:hasOrgItemID rdf:type owl:ObjectProperty ;
+              rdfs:domain :MicrobiologyEvent ;
+              rdfs:range :OrgItemID .
+
+
+###  https://example.com/mimic/hasOutputEvent
+:hasOutputEvent rdf:type owl:ObjectProperty ;
+                rdfs:domain :ICUStay ;
+                rdfs:range :OutputEvent .
+
+
+###  https://example.com/mimic/hasPrescription
+:hasPrescription rdf:type owl:ObjectProperty ;
+                 rdfs:domain :ICUStay ;
+                 rdfs:range :Prescription .
+
+
+###  https://example.com/mimic/hasPrevServiceType
+:hasPrevServiceType rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Service ;
+                    rdfs:range :ServiceType .
+
+
+###  https://example.com/mimic/hasProcedureEvent
+:hasProcedureEvent rdf:type owl:ObjectProperty ;
+                   rdfs:domain :ICUStay ;
+                   rdfs:range :ProcedureEvent .
+
+
+###  https://example.com/mimic/hasProcedureLocation
+:hasProcedureLocation rdf:type owl:ObjectProperty ;
+                      rdfs:domain :ProcedureEvent ;
+                      rdfs:range :ProcedureLocation .
+
+
+###  https://example.com/mimic/hasProcedureLocationCategory
+:hasProcedureLocationCategory rdf:type owl:ObjectProperty ;
+                              rdfs:domain :ProcedureEvent ;
+                              rdfs:range :ProcedureLocationCategory .
+
+
+###  https://example.com/mimic/hasReligion
+:hasReligion rdf:type owl:ObjectProperty ;
+             rdfs:domain :Admission ;
+             rdfs:range :Religion .
+
+
+###  https://example.com/mimic/hasRequestCDIFFStatus
+:hasRequestCDIFFStatus rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Callout ;
+                       rdfs:range :ReqeustCDIFFStatus .
+
+
+###  https://example.com/mimic/hasRequestMRSAStatus
+:hasRequestMRSAStatus rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Callout ;
+                      rdfs:range :RequestMRSAStatus .
+
+
+###  https://example.com/mimic/hasRequestRespStatus
+:hasRequestRespStatus rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Callout ;
+                      rdfs:range :ReqeustRespStatus .
+
+
+###  https://example.com/mimic/hasRequestTeleStatus
+:hasRequestTeleStatus rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Callout ;
+                      rdfs:range :RequestTeleStatus .
+
+
+###  https://example.com/mimic/hasRequestVREStatus
+:hasRequestVREStatus rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Callout ;
+                     rdfs:range :RequestVREStatus .
+
+
+###  https://example.com/mimic/hasSecondaryOrderCategoryName
+:hasSecondaryOrderCategoryName rdf:type owl:ObjectProperty ;
+                               rdfs:domain :Event ;
+                               rdfs:range :SecondaryOrderCategoryName .
+
+
+###  https://example.com/mimic/hasService
+:hasService rdf:type owl:ObjectProperty ;
+            rdfs:domain :Admission ;
+            rdfs:range :Service .
+
+
+###  https://example.com/mimic/hasSpecItemID
+:hasSpecItemID rdf:type owl:ObjectProperty ;
+               rdfs:domain :MicrobiologyEvent ;
+               rdfs:range :SpecItemID .
+
+
+###  https://example.com/mimic/hasSpecTypeDesc
+:hasSpecTypeDesc rdf:type owl:ObjectProperty ;
+                 rdfs:domain :MicrobiologyEvent ;
+                 rdfs:range :SpecTypeDesc .
+
+
+###  https://example.com/mimic/hasStatusDescription
+:hasStatusDescription rdf:type owl:ObjectProperty ;
+                      rdfs:domain :InputEvent ;
+                      rdfs:range :StatusDescription .
+
+
+###  https://example.com/mimic/hasSubSectionHeader
+:hasSubSectionHeader rdf:type owl:ObjectProperty ;
+                     rdfs:domain :SectionHeader ;
+                     rdfs:range :SubSectionHeader .
+
+
+###  https://example.com/mimic/hasTransferCurrCareunit
+:hasTransferCurrCareunit rdf:type owl:ObjectProperty ;
+                         rdfs:domain :TransferEvent ;
+                         rdfs:range :CareUnit .
+
+
+###  https://example.com/mimic/hasTransferCurrWardID
+:hasTransferCurrWardID rdf:type owl:ObjectProperty ;
+                       rdfs:domain :TransferEvent ;
+                       rdfs:range :WardID .
+
+
+###  https://example.com/mimic/hasTransferEvent
+:hasTransferEvent rdf:type owl:ObjectProperty ;
+                  rdfs:domain :ICUStay ;
+                  rdfs:range :TransferEvent .
+
+
+###  https://example.com/mimic/hasTransferEventType
+:hasTransferEventType rdf:type owl:ObjectProperty ;
+                      rdfs:domain :TransferEvent ;
+                      rdfs:range :TransferEventType .
+
+
+###  https://example.com/mimic/hasTransferPrevCareunit
+:hasTransferPrevCareunit rdf:type owl:ObjectProperty ;
+                         rdfs:domain :TransferEvent ;
+                         rdfs:range :CareUnit .
+
+
+###  https://example.com/mimic/hasTransferPrevWardID
+:hasTransferPrevWardID rdf:type owl:ObjectProperty ;
+                       rdfs:domain :TransferEvent ;
+                       rdfs:range :WardID .
+
+
+###  https://example.com/mimic/hasCaregiverType
+:hasCaregiverType rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Caregiver ;
+                  rdfs:range :CaregiverType .
+
+
+###  https://example.com/mimic/hasCaregiverDescription
+:hasCaregiverDescription rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Caregiver ;
+                         rdfs:range :CaregiverDescription .
+
+
+###  https://example.com/mimic/hasDatetimeEvent
+:hasDatetimeEvent rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Admission ;
+                  rdfs:range :DatetimeEvent .
+
+
+###  https://example.com/mimic/hasItemLabel
+:hasItemLabel rdf:type owl:ObjectProperty ;
+          rdfs:domain :MeasurementType ;
+          rdfs:range :ItemLabel .
+
+
+###  https://example.com/mimic/hasFluid
+:hasFluid rdf:type owl:ObjectProperty ;
+          rdfs:domain :MeasurementType ;
+          rdfs:range :Fluid .
+
+
+###  https://example.com/mimic/hasItemCategory
+:hasItemCategory rdf:type owl:ObjectProperty ;
+                 rdfs:domain :MeasurementType ;
+                 rdfs:range :ItemCategory .
+
+
+###  https://example.com/mimic/hasLoincCode
+:hasLoincCode rdf:type owl:ObjectProperty ;
+              rdfs:domain :MeasurementType ;
+              rdfs:range :LoincCode .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://example.com/mimic/ABItemID
+:ABItemID rdf:type owl:Class .
+
+
+###  https://example.com/mimic/AcknowledgeStatus
+:AcknowledgeStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Admission
+:Admission rdf:type owl:Class .
+
+
+###  https://example.com/mimic/AdmissionType
+:AdmissionType rdf:type owl:Class .
+
+
+###  https://example.com/mimic/CPTEvent
+:CPTEvent rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Callout
+:Callout rdf:type owl:Class .
+
+
+###  https://example.com/mimic/CalloutOutcome
+:CalloutOutcome rdf:type owl:Class .
+
+
+###  https://example.com/mimic/CalloutStatus
+:CalloutStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/CancelReason
+:CancelReason rdf:type owl:Class .
+
+
+###  https://example.com/mimic/CareUnit
+:CareUnit rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Caregiver
+:Caregiver rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ChartEvent
+:ChartEvent rdf:type owl:Class ;
+            rdfs:subClassOf :Event .
+
+
+###  https://example.com/mimic/ErrorStatus
+:ErrorStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ResultStatus
+:ResultStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/StoppedStatus
+:StoppedStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/WarningStatus
+:WarningStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ContinueInNextDeptStatus
+:ContinueInNextDeptStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/CostCenter
+:CostCenter rdf:type owl:Class .
+
+
+###  https://example.com/mimic/DRG
+:DRG rdf:type owl:Class .
+
+
+###  https://example.com/mimic/DRGCode
+:DRGCode rdf:type owl:Class .
+
+
+###  https://example.com/mimic/DRGMortality
+:DRGMortality rdf:type owl:Class .
+
+
+###  https://example.com/mimic/DRGSeverity
+:DRGSeverity rdf:type owl:Class .
+
+
+###  https://example.com/mimic/DRGType
+:DRGType rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Drug
+:Drug rdf:type owl:Class .
+
+
+###  https://example.com/mimic/DrugRoute
+:DrugRoute rdf:type owl:Class .
+
+
+###  https://example.com/mimic/DrugType
+:DrugType rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Ethnicity
+:Ethnicity rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Event
+:Event rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ExpireFlag
+:ExpireFlag rdf:type owl:Class .
+
+
+###  https://example.com/mimic/FirstCareUnit
+:FirstCareUnit rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Flag
+:Flag rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Gender
+:Gender rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ICDCode
+:ICDCode rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ICDDiagnosis
+:ICDDiagnosis rdf:type owl:Class ;
+              rdfs:subClassOf :ICDItem .
+
+
+###  https://example.com/mimic/ICDItem
+:ICDItem rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ICDProcedure
+:ICDProcedure rdf:type owl:Class ;
+              rdfs:subClassOf :ICDItem .
+
+
+###  https://example.com/mimic/ICUStay
+:ICUStay rdf:type owl:Class .
+
+
+###  https://example.com/mimic/InputEvent
+:InputEvent rdf:type owl:Class ;
+            rdfs:subClassOf :Event .
+
+
+###  https://example.com/mimic/Insurance
+:Insurance rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Interpretation
+:Interpretation rdf:type owl:Class .
+
+
+###  https://example.com/mimic/IsolateNum
+:IsolateNum rdf:type owl:Class .
+
+
+###  https://example.com/mimic/LabEvent
+:LabEvent rdf:type owl:Class ;
+          rdfs:subClassOf :Event .
+
+
+###  https://example.com/mimic/Language
+:Language rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Location
+:Location rdf:type owl:Class .
+
+
+###  https://example.com/mimic/MaritalStatus
+:MaritalStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/MeasurementType
+:MeasurementType rdf:type owl:Class .
+
+
+###  https://example.com/mimic/MicrobiologyEvent
+:MicrobiologyEvent rdf:type owl:Class ;
+                   rdfs:subClassOf :Event .
+
+
+###  https://example.com/mimic/NewBottleStatus
+:NewBottleStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/NoteCategory
+:NoteCategory rdf:type owl:Class .
+
+
+###  https://example.com/mimic/NoteDescription
+:NoteDescription rdf:type owl:Class .
+
+
+###  https://example.com/mimic/NoteEvent
+:NoteEvent rdf:type owl:Class ;
+           rdfs:subClassOf :Event .
+
+
+###  https://example.com/mimic/OpenBagStatus
+:OpenBagStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/OrderCategoryDescription
+:OrderCategoryDescription rdf:type owl:Class .
+
+
+###  https://example.com/mimic/OrderCategoryName
+:OrderCategoryName rdf:type owl:Class .
+
+
+###  https://example.com/mimic/OrderComponentTypeDescription
+:OrderComponentTypeDescription rdf:type owl:Class .
+
+
+###  https://example.com/mimic/OrgItemID
+:OrgItemID rdf:type owl:Class .
+
+
+###  https://example.com/mimic/OutputEvent
+:OutputEvent rdf:type owl:Class ;
+             rdfs:subClassOf :Event .
+
+
+###  https://example.com/mimic/Prescription
+:Prescription rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ProcedureEvent
+:ProcedureEvent rdf:type owl:Class ;
+                rdfs:subClassOf :Event .
+
+
+###  https://example.com/mimic/ProcedureLocation
+:ProcedureLocation rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ProcedureLocationCategory
+:ProcedureLocationCategory rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Religion
+:Religion rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ReqeustCDIFFStatus
+:ReqeustCDIFFStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ReqeustRespStatus
+:ReqeustRespStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/RequestMRSAStatus
+:RequestMRSAStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/RequestTeleStatus
+:RequestTeleStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/RequestVREStatus
+:RequestVREStatus rdf:type owl:Class .
+
+
+###  https://example.com/mimic/SecondaryOrderCategoryName
+:SecondaryOrderCategoryName rdf:type owl:Class .
+
+
+###  https://example.com/mimic/SectionHeader
+:SectionHeader rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Service
+:Service rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ServiceType
+:ServiceType rdf:type owl:Class .
+
+
+###  https://example.com/mimic/SpecItemID
+:SpecItemID rdf:type owl:Class .
+
+
+###  https://example.com/mimic/SpecTypeDesc
+:SpecTypeDesc rdf:type owl:Class .
+
+
+###  https://example.com/mimic/StatusDescription
+:StatusDescription rdf:type owl:Class .
+
+
+###  https://example.com/mimic/SubSectionHeader
+:SubSectionHeader rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Subject
+:Subject rdf:type owl:Class .
+
+
+###  https://example.com/mimic/TransferEvent
+:TransferEvent rdf:type owl:Class ;
+               rdfs:subClassOf :Event .
+
+
+###  https://example.com/mimic/TransferEventType
+:TransferEventType rdf:type owl:Class .
+
+
+###  https://example.com/mimic/WardID
+:WardID rdf:type owl:Class .
+
+
+###  https://example.com/mimic/CaregiverType
+:CaregiverType rdf:type owl:Class .
+
+
+###  https://example.com/mimic/CaregiverDescription
+:CaregiverDescription rdf:type owl:Class .
+
+
+###  https://example.com/mimic/DatetimeEvent
+:DatetimeEvent rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ItemLabel
+:ItemLabel rdf:type owl:Class .
+
+
+###  https://example.com/mimic/Fluid
+:Fluid rdf:type owl:Class .
+
+
+###  https://example.com/mimic/ItemCategory
+:ItemCategory rdf:type owl:Class .
+
+
+###  https://example.com/mimic/LoincCode
+:LoincCode rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

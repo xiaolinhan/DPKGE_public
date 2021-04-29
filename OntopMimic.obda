@@ -1,0 +1,88 @@
+[PrefixDeclaration]
+:		https://example.com/mimic/
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+foaf:		http://xmlns.com/foaf/0.1/
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+
+[MappingDeclaration] @collection [[
+mappingId	admissions
+target		:Subject-{subject_id} :hasAdmission :Admission-{subject_id}-{hadm_id} . :Admission-{subject_id}-{hadm_id} :admissionType :AdmissionType-{admission_type} ; :hasAdmissionLocation :Location-{admission_location} ; :hasDischargeLocation :Location-{discharge_location} ; :hasInsurance :Insurance-{insurance} ; :hasLanguage :Language-{language} ; :hasReligion :Religion-{religion} ; :hasMaritalStatus :MaritalStatus-{marital_status} ; :hasEthnicity :Ethnicity-{ethnicity} . 
+source		SELECT subject_id, hadm_id, admission_type, admission_location, discharge_location, insurance, language, religion, marital_status, ethnicity FROM admissions
+
+mappingId	callouts
+target		:CalloutEvent-{row_id} :hasCalloutSubmitWardID :WardID-{submit_wardid} ; :hasCalloutSubmitCareUnit :CareUnit-{submit_careunit} ; :hasCalloutCurrentWardID :WardID-{curr_wardid} ; :hasCalloutCurrentCareUnit :CareUnit-{curr_careunit} ; :hasCalloutToWardID :WardID-{callout_wardid} ; :hasCalloutService :CareUnit-{callout_service} ; :hasDischargeWardID :WardID-{discharge_wardid} ; :hasAcknowledgeStatus :AcknowledgeStatus-{acknowledge_status} ; :hasRequestTeleStatus :RequestTeleStatus-{request_tele} ; :hasRequestRespStatus :RequestRespStatus-{request_resp} ; :hasRequestCDIFFStatus :RequestCDIFFStatus-{request_cdiff} ; :hasRequestMRSAStatus :RequestMRSAStatus-{request_mrsa} ; :hasRequestVREStatus :RequestVREStatus-{request_vre} ; :hasCalloutStatus :CalloutStatus-{callout_status} ; :hasCalloutOutcome :CalloutOutcome-{callout_outcome} . :Admission-{subject_id}-{hadm_id} :hasCalloutEvent :CalloutEvent-{subject_id}-{hadm_id} . 
+source		SELECT row_id, subject_id, hadm_id, submit_wardid, submit_careunit, curr_wardid, curr_careunit, callout_wardid, callout_service, discharge_wardid, acknowledge_status, request_tele, request_resp, request_cdiff, request_mrsa, request_vre, callout_status, callout_outcome FROM callout
+
+mappingId	chartevents
+target		:Chartevent-{row_id} :hasMeasurementType :MeasurementType-{itemid} ; :hasCaregiver :Caregiver-{cgid} ; :hasChartEventWarningStatus :ChartEventWarningStatus-{warning} ; :hasChartEventErrorStatus :ChartEventErrorStatus-{error} ; :hasChartEventResultStatus :ChartEventResultStatus-{resultstatus} ; :hasChartEventStoppedStatus :ChartEventStoppedStatus-{stopped} . :ICUStay-{subject_id}-{hadm_id}-{icustay_id} :hasChartEvent :Chartevent-{row_id} . 
+source		SELECT row_id, subject_id, hadm_id, icustay_id, itemid, cgid, warning, error, resultstatus, stopped FROM chartevents
+
+mappingId	cptevents
+target		:Admission-{subject_id}-{hadm_id} :hasCPTEvent :CPTEvent-{row_id} . :CPTEvent-{row_id} :hasCostCenter :CostCenter-{costcenter} ; :hasSectionHeader :SectionHeader-{sectionheader} ; :hasSubSectionHeader :SubSectionHeader-{subsectionheader} . 
+source		SELECT row_id, subject_id, hadm_id, costcenter, sectionheader, subsectionheader FROM cptevents
+
+mappingId	diagnoses_icd
+target		:Admission-{subject_id}-{hadm_id} :hasICDDiagnosis :ICDDiagnosis-{row_id} . :ICDDiagnosis-{row_id} :hasICDCode :ICDCode-{icd9_code} . 
+source		SELECT row_id, subject_id, hadm_id, icd9_code FROM diagnoses_icd
+
+mappingId	drgcodes
+target		:Admission-{subject_id}-{hadm_id} :hasDRG :DRG-{row_id} . :DRG-{row_id} :hasDRGCode :DRGCode-{drg_code} ; :hasDRGType :DRGType-{drg_type} ; :hasDRGSeverity :DRGSeverity-{drg_severity} ; :hasDRGMortality :DRGMortality-{drg_mortality} . 
+source		SELECT row_id, subject_id, hadm_id, drg_code, drg_type, drg_severity, drg_mortality FROM drgcodes
+
+mappingId	icustays
+target		:Admission-{subject_id}-{hadm_id} :hasICUStay :ICUStay-{subject_id}-{hadm_id}-{icustay_id} . :ICUStay-{subject_id}-{hadm_id}-{icustay_id} :hasFirstCareUnit :CareUnit-{first_careunit} ; :hasLastCareUnit :CareUnit-{last_careunit} ; :hasFirstWardID :WardID-{first_wardid} ; :hasLastWardID :WardID-{last_wardid} . 
+source		SELECT subject_id, hadm_id, icustay_id, first_careunit, last_careunit, first_wardid, last_wardid FROM icustays
+
+mappingId	inputevents_cv
+target		:ICUStay-{subject_id}-{hadm_id}-{icustay_id} :hasInputEvent :InputEventCV-{row_id} . :InputEventCV-{row_id} :hasMeasurementType :MeasurementType-{itemid} ; :hasCaregiver :Caregiver-{cgid} ; :hasInputEventStoppedStatus :InputEventStoppedStatus-{stopped} ; :hasInputEventNewBottleStatus :InputEventNewBottleStatus-{newbottle} . 
+source		SELECT row_id, subject_id, hadm_id, icustay_id, itemid, cgid, stopped, newbottle FROM inputevents_cv
+
+mappingId	inputevents_mv
+target		:ICUStay-{subject_id}-{hadm_id}-{icustay_id} :hasInputEvent :InputEventMV-{row_id} . :InputEventCV-{row_id} :hasMeasurementType :MeasurementType-{itemid} ; :hasCaregiver :Caregiver-{cgid} ; :hasOrderCategoryName :OrderCategoryName-{ordercategoryname} ; :hasSecondaryOrderCategoryName :OrderCategoryName-{secondaryordercategoryname} ; :hasOrderComponentTypeDescription :OrderComponentTypeDescription-{ordercomponenttypedescription} ; :hasOrderCategoryDescription :OrderCategoryDescription-{ordercategorydescription} ; :hasStatusDescription :StatusDescription-{statusdescription} ; :hasOpenBagStatus :OpenBagStatus-{isopenbag} ; :hasContinueInNextDeptStatus :ContinueInNextDeptStatus-{continueinnextdept} ; :hasCancelReason :CancelReason-{cancelreason} . 
+source		SELECT row_id, subject_id, hadm_id, icustay_id, itemid, cgid, ordercategoryname, secondaryordercategoryname, ordercomponenttypedescription, ordercategorydescription, statusdescription, isopenbag, continueinnextdept, cancelreason FROM inputevents_mv
+
+mappingId	labevents
+target		:Admission-{subject_id}-{hadm_id} :hasLabEvent :LabEvent-{row_id} . :LabEvent-{row_id} :hasMeasurementType :MeasurementType-{itemid} ; :hasFlag :Flag-{flag} . 
+source		SELECT row_id, subject_id, hadm_id, itemid, flag FROM labevents
+
+mappingId	microbiologyevents
+target		:Admission-{subject_id}-{hadm_id} :hasMicrobiologyEvent :MicrobiologyEvent-{row_id} . :MicrobiologyEvent-{row_id} :hasSpecItemID :SpecItemID-{spec_itemid} ; :hasSpecTypeDesc :SpecTypeDesc-{spec_type_desc} ; :hasOrgItemID :OrgItemID-{org_itemid} ; :hasIsolateNum :IsolateNum-{isolate_num} ; :hasABItemID :ABItemID-{ab_itemid} ; :hasInterpretation :Interpretation-{interpretation} . 
+source		SELECT row_id, subject_id, hadm_id, spec_itemid, spec_type_desc, org_itemid, isolate_num, ab_itemid, interpretation FROM microbiologyevents
+
+mappingId	noteevents
+target		:Admission-{subject_id}-{hadm_id} :hasNoteEvent :NoteEvent-{row_id} . :NoteEvent-{row_id} :hasNoteCategory :NoteCategory-{category} ; :hasNoteDescription :NoteDescription-{description} ; :hasCaregiver :Caregiver-{cgid} ; :hasNoteErrorStatus :NoteErrorStatus-{iserror} . 
+source		SELECT row_id, subject_id, hadm_id, category, description, cgid, iserror FROM noteevents
+
+mappingId	outputevents
+target		:ICUStay-{subject_id}-{hadm_id}-{icustay_id} :hasOutputEvent :OutputEvent-{row_id} . :OutputEvent-{row_id} :hasMeasurementType :MeasurementType-{itemid} ; :hasCaregiver :Caregiver-{cgid} ; :hasOutputEventStoppedStatus :OutputEventStoppedStatus-{stopped} ; :hasOutputEventNewBottleStatus :OutputEventNewBottleStatus-{newbottle} ; :hasOutputErrorStatus :OutputErrorStatus-{iserror} . 
+source		SELECT row_id, subject_id, hadm_id, icustay_id, itemid, cgid, stopped, newbottle, iserror FROM outputevents
+
+mappingId	patients
+target		:Subject-{subject_id} :hasGender :Gender-{gender} ; :hasExpireFlag :ExpireFlag-{expire_flag} . 
+source		SELECT subject_id, gender, expire_flag FROM patients
+
+mappingId	prescriptions
+target		:ICUStay-{subject_id}-{hadm_id}-{icustay_id} :hasPrescription :Prescription-{row_id} . :Prescription-{row_id} :hasDrugType :DrugType-{drug_type} ; :hasDrug :Drug-{drug} ; :hasDrugRoute :DrugRoute-{route} . 
+source		SELECT row_id, subject_id, hadm_id, icustay_id, drug_type, drug, route FROM prescriptions
+
+mappingId	procedureevents
+target		:ICUStay-{subject_id}-{hadm_id}-{icustay_id} :hasProcedureEvent :ProcedureEvent-{row_id} . :ProcedureEvent-{row_id} :hasMeasurementType :MeasurementType-{itemid} ; :hasProcedureLocation :ProcedureLocation-{location} ; :hasProcedureLocationCategory :ProcedureLocationCategory-{locationcategory} ; :hasCaregiver :Caregiver-{cgid} ; :hasOrderCategoryName :OrderCategoryName-{ordercategoryname} ; :hasSecondaryOrderCategoryName :OrderCategoryName-{secondaryordercategoryname} ; :hasOrderCategoryDescription :OrderCategoryDescription-{ordercategorydescription} ; :hasStatusDescription :StatusDescription-{statusdescription} ; :hasOpenBagStatus :OpenBagStatus-{isopenbag} ; :hasContinueInNextDeptStatus :ContinueInNextDeptStatus-{continueinnextdept} ; :hasCancelReason :CancelReason-{cancelreason} . 
+source		SELECT row_id, subject_id, hadm_id, icustay_id, itemid, location, locationcategory, cgid, ordercategoryname, secondaryordercategoryname, ordercategorydescription, statusdescription, isopenbag, continueinnextdept, cancelreason FROM procedureevents_mv
+
+mappingId	procedures_icd
+target		:Admission-{subject_id}-{hadm_id} :hasICDProcedure :ICDProcedure-{row_id} . :Procedure-{row_id} :hasICDCode :ICDCode-{icd9_code} . 
+source		SELECT row_id, subject_id, hadm_id, icd9_code FROM procedures_icd
+
+mappingId	services
+target		:Admission-{subject_id}-{hadm_id} :hasService :Service-{row_id} . :Service-{row_id} :hasPrevServiceType :ServiceType-{prev_service} ; :hasCurrServiceType :ServiceType-{curr_service} . 
+source		SELECT row_id, subject_id, hadm_id, prev_service, curr_service FROM services
+
+mappingId	transfer
+target		:ICUStay-{subject_id}-{hadm_id}-{icustay_id} :hasTransferEvent :TransferEvent-{row_id} . :TransferEvent-{row_id} :hasTransferEventType :TransferEventType-{eventtype} ; :hasTransferPrevCareunit :Careunit-{prev_careunit} ; :hasTransferPrevWardID :WardID-{prev_wardid} ; :hasTransferCurrCareunit :Careunit-{curr_careunit} ; :hasTransferCurrWardID :WardID-{curr_wardid} . 
+source		SELECT row_id, subject_id, hadm_id, icustay_id, eventtype, prev_careunit, prev_wardid, curr_careunit, curr_wardid FROM transfers
+]]
+

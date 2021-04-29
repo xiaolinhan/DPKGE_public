@@ -1,0 +1,56 @@
+[PrefixDeclaration]
+:		https://example.com/mimic/
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+foaf:		http://xmlns.com/foaf/0.1/
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+
+[MappingDeclaration] @collection [[
+
+mappingId	treatment
+target		:Patient-{patientunitstayid} :hasTreatmentOf :Treatment-{treatmentid} . 
+source		SELECT treatmentid, patientunitstayid FROM Treatment
+
+mappingId	drug
+target		:Patient-{patientunitstayid} :hasDrugOf :Drug-{drugname} . :Drug-{drugname} :hasTypeOf :SpecialtyType-{specialtytype} . 
+source		SELECT drugname, patientunitstayid, specialtytype FROM drug
+
+mappingId	allergy
+target		:Patient-{patientunitstayid} :hasAllergyOf :AllergyName-{allergyname} . :AllergyName-{allergyname} :hasAllergyTypeOf :AllergyType-{allergytype} . 
+source		SELECT allergyname, patientunitstayid, allergytype FROM allergy
+
+mappingId	patient
+target		:Patient-{patientunitstayid} :hasGenderOf :Gender-{gender} ; :hasEthnicityOf :Ethnicity-{ethnicity} ; :staysAt :Hospital-{hospitalid} ; :isAdmittedIn :UnitType-{unittype} .
+source		SELECT gender, patientunitstayid, ethnicity, hospitalid, unittype FROM patient
+
+mappingId	careplan
+target		:Patient-{patientunitstayid} :isProvidedBy :CareplanProvider-{specialty} . 
+source		SELECT specialty, patientunitstayid FROM careplan WHERE specialty <> ''
+
+mappingId	hospital
+target		:Hospital-{hospitalid} :isLocatedAt :Region-{region} . 
+source		SELECT hospitalid, region FROM hospital
+
+mappingId	diagnosis_unres
+target		:Diagnosis-{diagnosisstring} :hasICD9CODE :ICD9CODE-{icd9code} . 
+source		SELECT diagnosisstring, icd9code FROM diagnosis WHERE ICD9CODE <> ''
+
+mappingId	nurse_unres
+target		:Nurse-{nurseassessid} :hasAttributeOf :CellAttribute-{cellattribute} . 
+source		SELECT nurseassessid, cellattribute FROM nurse
+
+
+
+mappingId	nurse_res
+target		:Patient-{patientunitstayid} :isTakenCareBy :Nurse-{nurseassessid} .
+source		SELECT nurseassessid, patientunitstayid FROM nurse
+
+mappingId	diagnosis_res
+target		:Patient-{patientunitstayid} :isDiagnosedAs :Diagnosis-{diagnosisstring} .
+source		SELECT patientunitstayid, diagnosisstring FROM diagnosis WHERE diagnosisstring <> ''
+
+]]
+
