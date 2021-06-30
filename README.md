@@ -1,6 +1,6 @@
-Mapping files of Mimic-III [1]: OntopMimic.owl, OntopMimic.obda, OntopMimic.properties
+Mapping files of MIMIC-III [1]: OntopMimic.owl, OntopMimic.obda, OntopMimic.properties
 
-Mapping files of Eicu [2]: OntopEicu.owl, OntopEicu.obda, OntopEicu.properties
+Mapping files of eICU [2]: OntopEicu.owl, OntopEicu.obda, OntopEicu.properties
 
 
 
